@@ -6,13 +6,6 @@ import {useTitle} from "../hooks/useTitle";
 
 export const MovieDetails = () => {
     const [data, setData] = useState({})
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`,
-        }
-    };
     const {
         title,
         overview,
@@ -31,6 +24,13 @@ export const MovieDetails = () => {
     useTitle(data.title)
     useEffect(() => {
         const url = `https://api.themoviedb.org/3/movie/${params.id}`
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`,
+            }
+        };
 
         async function fetchData() {
             const response = await fetch(url, options);
