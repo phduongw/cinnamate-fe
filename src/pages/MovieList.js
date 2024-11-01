@@ -1,17 +1,16 @@
-import { useSearchParams } from 'react-router-dom'
-
 import {Card} from "../components";
 import useFetch from "../hooks/useFetch";
+import {useTitle} from "../hooks/useTitle";
 
-export const MovieList = ({apiPath}) => {
-    let [params] = useSearchParams(apiPath);
-    const queryTerm = params.get("q")
-    const {data} = useFetch(apiPath, queryTerm)
+export const MovieList = ({apiPath, title}) => {
+    const {data} = useFetch(apiPath)
+    useTitle(title)
+
 
     return (
         <main>
             <section className="max-w-7xl mx-auto py-7">
-                <div className="flex justify-start flex-wrap ">
+                <div className="flex justify-start flex-wrap other:justify-evenly">
                     {data.map((movie) => (
                         <Card
                             key={movie.id}
