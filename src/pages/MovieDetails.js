@@ -39,7 +39,7 @@ export const MovieDetails = () => {
         }
 
         fetchData();
-    });
+    }, [params.id]);
 
     const posterUrl = poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : backup;
     return (
